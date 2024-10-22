@@ -63,6 +63,7 @@ StringRef Triple::getArchTypeName(ArchType Kind) {
   case renderscript64: return "renderscript64";
   case riscv32:        return "riscv32";
   case riscv64:        return "riscv64";
+  case q1:             return "q1";
   case shave:          return "shave";
   case sparc:          return "sparc";
   case sparcel:        return "sparcel";
@@ -219,6 +220,8 @@ StringRef Triple::getArchTypePrefix(ArchType Kind) {
   case riscv32:
   case riscv64:     return "riscv";
 
+  case q1:          return "q1";
+  
   case ve:          return "ve";
   case csky:        return "csky";
 
@@ -421,6 +424,7 @@ Triple::ArchType Triple::getArchTypeForLLVMName(StringRef Name) {
     .Case("amdgcn", amdgcn)
     .Case("riscv32", riscv32)
     .Case("riscv64", riscv64)
+    .Case("q1", q1)
     .Case("hexagon", hexagon)
     .Case("sparc", sparc)
     .Case("sparcel", sparcel)
@@ -567,6 +571,7 @@ static Triple::ArchType parseArch(StringRef ArchName) {
           .Case("amdgcn", Triple::amdgcn)
           .Case("riscv32", Triple::riscv32)
           .Case("riscv64", Triple::riscv64)
+          .Case("q1", Triple::q1)
           .Case("hexagon", Triple::hexagon)
           .Cases("s390x", "systemz", Triple::systemz)
           .Case("sparc", Triple::sparc)
@@ -1633,7 +1638,10 @@ unsigned Triple::getArchPointerBitWidth(llvm::Triple::ArchType Arch) {
   case llvm::Triple::xcore:
   case llvm::Triple::xtensa:
     return 32;
-
+  
+  case llvm::Triple::q1:
+    return 32;
+  
   case llvm::Triple::aarch64:
   case llvm::Triple::aarch64_be:
   case llvm::Triple::amdgcn:
@@ -1724,6 +1732,10 @@ Triple Triple::get32BitArchVariant() const {
   case Triple::xtensa:
     // Already 32-bit.
     break;
+    
+  case Triple::q1:
+      // Already 32-bit.
+      break;
 
   case Triple::aarch64:        T.setArch(Triple::arm);     break;
   case Triple::aarch64_be:     T.setArch(Triple::armeb);   break;
@@ -1799,6 +1811,10 @@ Triple Triple::get64BitArchVariant() const {
   case Triple::wasm64:
   case Triple::x86_64:
     // Already 64-bit.
+    break;
+    
+  case Triple::q1:
+    T.setArch(UnknownArch);
     break;
 
   case Triple::aarch64_32:      T.setArch(Triple::aarch64);    break;
