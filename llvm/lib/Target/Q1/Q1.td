@@ -1,6 +1,7 @@
 include "llvm/Target/Target.td"
 
 include "Q1RegisterInfo.td"
+include "Q1CallingConv.td"
 include "Q1InstrFormats.td"
 include "Q1InstrInfo.td"
 

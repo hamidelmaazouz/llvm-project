@@ -8,6 +8,7 @@ set(LLVM_TARGET_DEFINITIONS Q1.td)
 #tablegen(LLVM Q1GenMCPseudoLowering.inc -gen-pseudo-lowering)
 #tablegen(LLVM Q1GenRegisterBank.inc -gen-register-bank)
 #tablegen(LLVM Q1GenSearchableTables.inc -gen-searchable-tables)
+tablegen(LLVM Q1GenCallingConv.inc -gen-callingconv)
 tablegen(LLVM Q1GenAsmMatcher.inc -gen-asm-matcher)
 tablegen(LLVM Q1GenAsmWriter.inc -gen-asm-writer)
 tablegen(LLVM Q1GenMCCodeEmitter.inc -gen-emitter)
@@ -28,6 +29,20 @@ add_public_tablegen_target(Q1CommonTableGen)
 
 add_llvm_target(Q1CodeGen
   Q1TargetMachine.cpp
+  Q1FrameLowering.cpp
+  Q1RegisterInfo.cpp
+  Q1InstrInfo.cpp
+
+  LINK_COMPONENTS
+  AsmPrinter
+  CodeGen
+  Core
+  MC
+  Support
+  Target
+  TargetParser
+  Q1Desc
+  Q1Info
 
   ADD_TO_COMPONENT
   Q1
