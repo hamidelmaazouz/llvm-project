@@ -11,4 +11,4 @@ using namespace llvm;
 // Pin the vtable to this file.
 void Q1InstrInfo::anchor() {}
 
-Q1InstrInfo::Q1InstrInfo() : Q1GenInstrInfo(), RI() {}
+Q1InstrInfo::Q1InstrInfo(Q1Subtarget &STI) : Q1GenInstrInfo(), STI(STI), RI() {}

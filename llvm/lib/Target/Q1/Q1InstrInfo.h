@@ -9,13 +9,17 @@
 
 namespace llvm {
 
+class Q1Subtarget;
+
 class Q1InstrInfo : public Q1GenInstrInfo {
+protected:
+  const Q1Subtarget &STI;
   const Q1RegisterInfo RI;
 
   virtual void anchor();
 
 public:
-  Q1InstrInfo();
+  explicit Q1InstrInfo(Q1Subtarget &STI);
   const Q1RegisterInfo &getRegisterInfo() const { return RI; }
 };
 

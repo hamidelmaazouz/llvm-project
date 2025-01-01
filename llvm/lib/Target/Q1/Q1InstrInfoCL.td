@@ -25,7 +25,7 @@ def LOOP_RR : Q1InstCJ<(ins GPROpnd:$a, GPROpnd:$address), "loop $a, $address">;
 
 
 //===----------------------------------------------------------------------===//
-// Classical - Arithmetic instructions
+// Classical - Arithmetic (and Logic) instructions
 //===----------------------------------------------------------------------===//
 
 def MOVE_IR : Q1InstCommon<(ins i32imm:$source), (outs GPROpnd:$destination), "move $source, $destination", []>;
@@ -54,28 +54,3 @@ def ASL_RRR : Q1InstCommon<(ins GPROpnd:$a, GPROpnd:$b), (outs GPROpnd:$destinat
 
 def ASR_RIR : Q1InstCommon<(ins GPROpnd:$a, i32imm:$b), (outs GPROpnd:$destination), "asr $a, $b, $destination", []>;
 def ASR_RRR : Q1InstCommon<(ins GPROpnd:$a, GPROpnd:$b), (outs GPROpnd:$destination), "asr $a, $b, $destination", []>;
-
-
-//===----------------------------------------------------------------------===//
-// Classical - Parameter operation instructions
-//===----------------------------------------------------------------------===//
-
-def SET_MRK_I : Q1InstCJ<(ins i32imm:$mask), "set_mrk $mask">;
-def SET_MRK_R : Q1InstCJ<(ins GPROpnd:$mask), "set_mrk $mask">;
-
-def SET_FREQ_I : Q1InstCJ<(ins i32imm:$value), "set_freq $value">;
-def SET_FREQ_R : Q1InstCJ<(ins GPROpnd:$value), "set_freq $value">;
-
-def RESET_PH : Q1InstCC<"reset_ph">;
-
-def SET_PH_I : Q1InstCJ<(ins i32imm:$value), "set_ph $value">;
-def SET_PH_R : Q1InstCJ<(ins GPROpnd:$value), "set_ph $value">;
-
-def SET_PH_DELTA_I : Q1InstCJ<(ins i32imm:$value), "set_ph_delta $value">;
-def SET_PH_DELTA_R : Q1InstCJ<(ins GPROpnd:$value), "set_ph_delta $value">;
-
-def SET_AWG_GAIN_I : Q1InstCJ<(ins i32imm:$value), "set_awg_gain $value">;
-def SET_AWG_GAIN_R : Q1InstCJ<(ins GPROpnd:$value), "set_awg_gain $value">;
-
-def SET_AWG_OFFS_I : Q1InstCJ<(ins i32imm:$value), "set_awg_offs $value">;
-def SET_AWG_OFFS_R : Q1InstCJ<(ins GPROpnd:$value), "set_awg_offs $value">;
