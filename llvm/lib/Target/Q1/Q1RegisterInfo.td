@@ -13,15 +13,9 @@ foreach i = 0-63 in {
 }
 
 //===----------------------------------------------------------------------===//
-// Register Classes and Operands
+// Register Classes
 //===----------------------------------------------------------------------===//
 
 class Q1RegisterClass<dag regList> : RegisterClass<"Q1", [i32], 32, regList>;
 
 def GP : Q1RegisterClass<(add (sequence "R%u", 0, 63))>;
-
-class Q1RegisterOperand<RegisterClass RC> : RegisterOperand<RC> {
-  let DecoderMethod = "decode" # RC # "RegisterClass";
-}
-
-def GPROpnd : Q1RegisterOperand<GP>;

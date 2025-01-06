@@ -31,3 +31,12 @@ def FeatureRF : Q1Extension<"rf", "HasRF", "true", "Specifies RF up-conversion c
 def FeatureQC : Q1Extension<"qc", "HasQC", "false", "Specifies Qubit Control capabilities as in Qblox QCM">;
 
 def FeatureQR : Q1Extension<"qr", "HasQR", "false", "Specifies Qubit Readout capabilities as in Qblox QRM">;
+
+
+//===----------------------------------------------------------------------===//
+// LLVM specific features and extensions
+//===----------------------------------------------------------------------===//
+
+defvar Q1HwMode = DefaultMode;
+
+def Q1VT : ValueTypeByHwMode<[Q1HwMode], [i32]>;
