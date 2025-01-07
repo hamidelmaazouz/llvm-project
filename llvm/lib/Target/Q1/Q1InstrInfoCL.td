@@ -36,18 +36,23 @@ def NOT_RR : Q1InstCL<(ins GPROpnd:$source), (outs GPROpnd:$destination), "not $
 
 def ADD_RIR : Q1InstCL<(ins GPROpnd:$a, UImmOpnd:$b), (outs GPROpnd:$destination), "add $a, $b, $destination", []>;
 def ADD_RRR : Q1InstCL<(ins GPROpnd:$a, GPROpnd:$b), (outs GPROpnd:$destination), "add $a, $b, $destination", []>;
+def : PatRegReg<add, ADD_RRR>;
 
 def SUB_RIR : Q1InstCL<(ins GPROpnd:$a, UImmOpnd:$b), (outs GPROpnd:$destination), "sub $a, $b, $destination", []>;
 def SUB_RRR : Q1InstCL<(ins GPROpnd:$a, GPROpnd:$b), (outs GPROpnd:$destination), "sub $a, $b, $destination", []>;
+def : PatRegReg<sub, SUB_RRR>;
 
 def AND_RIR : Q1InstCL<(ins GPROpnd:$a, UImmOpnd:$b), (outs GPROpnd:$destination), "and $a, $b, $destination", []>;
 def AND_RRR : Q1InstCL<(ins GPROpnd:$a, GPROpnd:$b), (outs GPROpnd:$destination), "and $a, $b, $destination", []>;
+def : PatRegReg<and, AND_RRR>;
 
 def OR_RIR : Q1InstCL<(ins GPROpnd:$a, UImmOpnd:$b), (outs GPROpnd:$destination), "or $a, $b, $destination", []>;
 def OR_RRR : Q1InstCL<(ins GPROpnd:$a, GPROpnd:$b), (outs GPROpnd:$destination), "or $a, $b, $destination", []>;
+def : PatRegReg<or, OR_RRR>;
 
 def XOR_RIR : Q1InstCL<(ins GPROpnd:$a, UImmOpnd:$b), (outs GPROpnd:$destination), "xor $a, $b, $destination", []>;
 def XOR_RRR : Q1InstCL<(ins GPROpnd:$a, GPROpnd:$b), (outs GPROpnd:$destination), "xor $a, $b, $destination", []>;
+def : PatRegReg<xor, XOR_RRR>;
 
 def ASL_RIR : Q1InstCL<(ins GPROpnd:$a, UImmOpnd:$b), (outs GPROpnd:$destination), "asl $a, $b, $destination", []>;
 def ASL_RRR : Q1InstCL<(ins GPROpnd:$a, GPROpnd:$b), (outs GPROpnd:$destination), "asl $a, $b, $destination", []>;
